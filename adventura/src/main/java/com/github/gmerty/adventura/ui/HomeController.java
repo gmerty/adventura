@@ -21,7 +21,7 @@ public class HomeController extends GridPane implements Observer{
 	@FXML private TextArea vystup;
 	@FXML private ListView<Vec> seznamVeciVMistnosti;
 	@FXML private ListView<Prostor> seznamVychodu;
-	//@FXML private ListView<Postava> seznamPostavVMistnosti;
+	@FXML private ListView<Postava> seznamPostavVMistnosti;
 	//@FXML private ListView<Vec> seznamVeciVBatohu;
 	
 	
@@ -57,16 +57,19 @@ public class HomeController extends GridPane implements Observer{
 		this.hra = hra;
 		seznamVeciVMistnosti.getItems().addAll(hra.getHerniPlan().getAktualniProstor().getVeci());
 		seznamVychodu.getItems().addAll(hra.getHerniPlan().getAktualniProstor().getVychody());
-		System.out.println("");
+		seznamPostavVMistnosti.getItems().addAll(hra.getHerniPlan().getAktualniProstor().getPostavy());
+		//seznamVeciVBatohu.getItems().addAll(hra.getHerniPlan().getAktualniProstor().)
+		//System.out.println("");
+		hra.getHerniPlan().addObserver(this);
 	}
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		//seznamVeciVMistnosti.getItems().clear();
-		//seznamVychodu.getItems().clear();
-		//seznamVeciVMistnosti.getItems().addAll(hra.getHerniPlan().getAktualniProstor().getVeci());
-		//seznamVychodu.getItems().addAll(hra.getHerniPlan().getAktualniProstor().getVychody());
-		// TODO Auto-generated method stub
+		seznamVeciVMistnosti.getItems().clear();
+		seznamVychodu.getItems().clear();
+		seznamVeciVMistnosti.getItems().addAll(hra.getHerniPlan().getAktualniProstor().getVeci());
+		seznamVychodu.getItems().addAll(hra.getHerniPlan().getAktualniProstor().getVychody());
+		seznamPostavVMistnosti.getItems().addAll(hra.getHerniPlan().getAktualniProstor().getPostavy());
 		//hra.
 	}
 
