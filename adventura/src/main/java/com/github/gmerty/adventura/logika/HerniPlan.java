@@ -40,11 +40,11 @@ public class HerniPlan extends Observable{
      */
     private void zalozProstoryHry() {
         // vytvářejí se jednotlivé prostory
-        Prostor Londyn = new Prostor("Londyn", "tady je dům příbuznych, ve kterém Alan bydlil do nástupu do Šerbornu");
-        Prostor Serborne = new Prostor("Serborne", "je to základní škola pro chlapce, Alan nastoupí tam ve věku 13 let. Tam se setkal s Kristoferem Morkmonem a dostá potvrzení o středoškolském vzdělání od pana direktora.");
-        Prostor Kembridge = new Prostor("Kembridge","King's College, do kterého Alan nastoupil po škole a kde se učil u profesora Hardy.");
-        Prostor Princeton = new Prostor("Princeton","je to univerzita na které Alan studujé kryptografie a učí se od pána Chorcha a pána Witgenštejna.");
-        Prostor BletchleyPark = new Prostor("Bletchley_Park","je to hlavní místo kde Britské vědci pokouší prolomit syfru Enigmy.");
+        Prostor Londyn = new Prostor("Londyn", "tady je dům příbuznych, ve kterém Alan bydlil do nástupu do Šerbornu", 180.0, 135.0);
+        Prostor Serborne = new Prostor("Serborne", "je to základní škola pro chlapce, Alan nastoupí tam ve věku 13 let. Tam se setkal s Kristoferem Morkmonem a dostá potvrzení o středoškolském vzdělání od pana direktora.",100.0,70.0);
+        Prostor Kembridge = new Prostor("Kembridge","King's College, do kterého Alan nastoupil po škole a kde se učil u profesora Hardy.",260.0,72.0);
+        Prostor Princeton = new Prostor("Princeton","je to univerzita na které Alan studujé kryptografie a učí se od pána Chorcha a pána Witgenštejna.",260.0,230.0);
+        Prostor BletchleyPark = new Prostor("Bletchley_Park","je to hlavní místo kde Britské vědci pokouší prolomit syfru Enigmy.",100.0,230.0);
        
         // zamykají se nedostupné prostory
         

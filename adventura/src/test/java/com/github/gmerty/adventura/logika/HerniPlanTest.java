@@ -52,7 +52,7 @@ public class HerniPlanTest
     {
     	com.github.gmerty.adventura.logika.HerniPlan herniPla1 = new com.github.gmerty.adventura.logika.HerniPlan();
     	com.github.gmerty.adventura.logika.Batoh batoh1 = new com.github.gmerty.adventura.logika.Batoh();
-    	com.github.gmerty.adventura.logika.Prostor prostor1 = new com.github.gmerty.adventura.logika.Prostor("A", "prostor A");
+    	com.github.gmerty.adventura.logika.Prostor prostor1 = new com.github.gmerty.adventura.logika.Prostor("A", "prostor A",0,0);
     	com.github.gmerty.adventura.logika.Vec vec1 = new com.github.gmerty.adventura.logika.Vec("va", true);
     	com.github.gmerty.adventura.logika.Vec vec2 = new com.github.gmerty.adventura.logika.Vec("vb", false);
     	com.github.gmerty.adventura.logika.Postava postava1 = new com.github.gmerty.adventura.logika.Postava("pa", "ahoj", true);

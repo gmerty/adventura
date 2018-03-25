@@ -73,7 +73,7 @@ public class BatohTest
     	com.github.gmerty.adventura.logika.HerniPlan herniPla1 = new com.github.gmerty.adventura.logika.HerniPlan();
     	com.github.gmerty.adventura.logika.PrikazSeber prikazSe1 = new com.github.gmerty.adventura.logika.PrikazSeber(herniPla1);
         assertEquals("To tu neni.", prikazSe1.provedPrikaz("seber va"));
-        com.github.gmerty.adventura.logika.Prostor prostor1 = new com.github.gmerty.adventura.logika.Prostor("A", "prostor A");
+        com.github.gmerty.adventura.logika.Prostor prostor1 = new com.github.gmerty.adventura.logika.Prostor("A", "prostor A",0,0);
         //assertEquals(true, prostor1.vlozVec(vec1));
         //assertEquals(true, prostor1.vlozVec(vec2));
         com.github.gmerty.adventura.logika.PrikazJdi prikazJd1 = new com.github.gmerty.adventura.logika.PrikazJdi(herniPla1);

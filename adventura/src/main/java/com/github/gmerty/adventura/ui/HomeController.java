@@ -10,10 +10,10 @@ import com.github.gmerty.adventura.logika.Vec;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
-//import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
+import javafx.scene.image.ImageView;
 
 public class HomeController extends GridPane implements Observer{
 	
@@ -22,6 +22,7 @@ public class HomeController extends GridPane implements Observer{
 	@FXML private ListView<Vec> seznamVeciVMistnosti;
 	@FXML private ListView<Prostor> seznamVychodu;
 	@FXML private ListView<Postava> seznamPostavVMistnosti;
+	@FXML private ImageView uzivatel;
 	//@FXML private ListView<Vec> seznamVeciVBatohu;
 	
 	
@@ -60,6 +61,8 @@ public class HomeController extends GridPane implements Observer{
 		seznamPostavVMistnosti.getItems().addAll(hra.getHerniPlan().getAktualniProstor().getPostavy());
 		//seznamVeciVBatohu.getItems().addAll(hra.getHerniPlan().getAktualniProstor().)
 		//System.out.println("");
+		uzivatel.setX(hra.getHerniPlan().getAktualniProstor().getX());
+		uzivatel.setY(hra.getHerniPlan().getAktualniProstor().getY());
 		hra.getHerniPlan().addObserver(this);
 	}
 
@@ -70,6 +73,8 @@ public class HomeController extends GridPane implements Observer{
 		seznamVeciVMistnosti.getItems().addAll(hra.getHerniPlan().getAktualniProstor().getVeci());
 		seznamVychodu.getItems().addAll(hra.getHerniPlan().getAktualniProstor().getVychody());
 		seznamPostavVMistnosti.getItems().addAll(hra.getHerniPlan().getAktualniProstor().getPostavy());
+		uzivatel.setX(hra.getHerniPlan().getAktualniProstor().getX());
+		uzivatel.setY(hra.getHerniPlan().getAktualniProstor().getY());
 		//hra.
 	}
 

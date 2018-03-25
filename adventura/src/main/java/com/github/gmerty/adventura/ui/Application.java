@@ -39,7 +39,7 @@ public class Application extends javafx.application.Application {
 		
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass()
-		          .getResource("Scene.fxml"));
+		          .getResource("Scene2.fxml"));
 		Parent root = loader.load();
 
 		HomeController controller = loader.getController();
