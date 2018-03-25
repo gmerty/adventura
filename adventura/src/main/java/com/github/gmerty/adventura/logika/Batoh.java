@@ -13,8 +13,8 @@ import java.util.*;
 public class Batoh
 {
     private int kapacita = 10;
-    private Collection<Vec> seznamVeciVBatohu;
-    //private Map<String,Vec> seznamVeciVbatohu
+    //private Collection<Vec> seznamVeciVBatohu;
+    private Map<String,Vec> seznamVeciVBatohu;
     
     //== Datové atributy (statické i instancí)======================================
 
@@ -25,7 +25,8 @@ public class Batoh
      */
     public Batoh()
     {
-        seznamVeciVBatohu = new HashSet<>();
+        //seznamVeciVBatohu = new HashSet<>();
+    	seznamVeciVBatohu = new HashMap<String, Vec>();
     }
 
     //== Nesoukromé metody (instancí i třídy) ======================================
@@ -35,11 +36,11 @@ public class Batoh
      *@param vec
      *@return true = vec je přídana do batohu, false = vec nepřidáná do batohu
      */
-    public boolean pridejVec (Vec vec) {
+    public void pridejVec (Vec vec) {
         if (this.volnychMist() > 0) {
-            return seznamVeciVBatohu.add(vec);
+            seznamVeciVBatohu.put(vec.getNazev(),vec);
         }
-        return false;
+        //return false;
     }
     
     /**
@@ -50,13 +51,17 @@ public class Batoh
      */
     public Vec odeberVec (String nazev) {
         Vec hledana = null;
-        for (Vec vec : seznamVeciVBatohu) {
+        /*for (Vec vec : seznamVeciVbatohu) {
             if (vec.getNazev().equals(nazev)) {
                 hledana = vec;
-                seznamVeciVBatohu.remove(vec);
+                seznamVeciVbatohu.remove(vec);
                 break;
             }
-        }
+        }*/
+        if (seznamVeciVBatohu.containsKey(nazev)) {
+            hledana = seznamVeciVBatohu.get(nazev);
+            seznamVeciVBatohu.remove(nazev);
+        } 
         return hledana;
     }
     
@@ -65,9 +70,9 @@ public class Batoh
      *  
      *@return seznam věcí
      */
-    public Collection<Vec> veciVBatohu() {
+    /*public Collection<Vec> veciVBatohu() {
         return seznamVeciVBatohu;
-    }
+    }*/
     
     /**
      *  Metoda počitá kolik volných míst zbyvá v batohu.
@@ -75,11 +80,13 @@ public class Batoh
      *@return počet volných mist
      */
     public int volnychMist() {
-        int vm = kapacita;
-        for (Vec vec : seznamVeciVBatohu) {
+        //int vm = kapacita;
+        /*for (Vec vec : seznamVeciVBatohu) {
             vm--;
-        }
-        return vm;
+        }*/
+        
+        //return vm;
+    	return kapacita-seznamVeciVBatohu.size();
     }
 
     /**
@@ -87,11 +94,20 @@ public class Batoh
      *  
      *@return seznam věcí ve formě textu
      */
-    public String vBatohu () {
+    @SuppressWarnings("rawtypes")
+	public String vBatohu () {
         String veci = "V batohu: ";
-        for (Vec vec : seznamVeciVBatohu) {
+        /*for (Vec vec : seznamVeciVbatohu) {
             veci += vec.getNazev() + ", ";
+        }*/
+        
+        Set set = seznamVeciVBatohu.entrySet();
+        Iterator iterator = set.iterator();
+        while (iterator.hasNext()) {
+        	Map.Entry mentry = (Map.Entry)iterator.next();
+        	veci += mentry.getValue() + ", ";
         }
+        
         return veci;
     }
     
@@ -102,14 +118,15 @@ public class Batoh
      *@return true = vec je nalezená v batohu, false = vec nenalezená
      */
     public boolean najdiVBatohu (String nazev) {
-        boolean hledana = false;
-        for (Vec vec : seznamVeciVBatohu) {
+        //boolean hledana = false;
+        /*for (Vec vec : seznamVeciVbatohu) {
             if (vec.getNazev().equals(nazev)) {
                 hledana = true;
                 break;
             }
         }
-        return hledana;
+        return hledana;*/
+        return seznamVeciVBatohu.containsKey(nazev);
     }
     
 }
