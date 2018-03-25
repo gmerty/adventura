@@ -57,6 +57,7 @@ public class HomeController extends GridPane implements Observer{
 		this.hra = hra;
 		seznamVeciVMistnosti.getItems().addAll(hra.getHerniPlan().getAktualniProstor().getVeci());
 		seznamVychodu.getItems().addAll(hra.getHerniPlan().getAktualniProstor().getVychody());
+		System.out.println("");
 	}
 
 	@Override

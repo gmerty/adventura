@@ -36,10 +36,12 @@ public class Batoh
      *@param vec
      *@return true = vec je přídana do batohu, false = vec nepřidáná do batohu
      */
-    public void pridejVec (Vec vec) {
+    public boolean pridejVec (Vec vec) {
         if (this.volnychMist() > 0) {
             seznamVeciVBatohu.put(vec.getNazev(),vec);
+            return true;
         }
+        else return false;
         //return false;
     }
     

@@ -336,6 +336,11 @@ public class Prostor {
 	public Collection<Vec> getVeci() {
 		return Collections.unmodifiableCollection(seznamVeci.values());
 	}
-   
+	
+    @Override
+    public String toString() {
+    	return getNazev();
     
+    }
+
 }
