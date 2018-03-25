@@ -29,8 +29,9 @@ public class Prostor {
     private String zamcenoVypis;
     private Set<Prostor> vychody;   // obsahuje sousední místnosti
     //private Set<Vec> veci;
-    private Set<Postava> postavy;
+    //private Set<Postava> postavy;
     private Map<String, Vec> seznamVeci;
+    private Map<String, Postava> seznamPostav;
     
     /**
      * Vytvoření prostoru se zadaným popisem, nastavuje je-li prostor zamčen, 
@@ -47,9 +48,9 @@ public class Prostor {
         zamcenoVypis = "";
         vychody = new HashSet<>();
         //veci = new HashSet<>();
-        postavy = new HashSet<>();
+        //postavy = new HashSet<>();
         seznamVeci = new HashMap<String, Vec>();
-
+        seznamPostav = new HashMap<String, Postava>();
         
     }
 
@@ -214,9 +215,10 @@ public class Prostor {
      */
     private String popisPostav() {
         String vracenyText = "postavy:";
-        for (Postava postava : postavy) {
-            if (postava.getJeVidet())
-            vracenyText += " " + postava.getJmeno();
+        //for (Postava postava : postavy) {
+        for (String jmenoPostavy : seznamPostav.keySet()) {
+            if (seznamPostav.get(jmenoPostavy).getJeVidet())
+            vracenyText += " " + jmenoPostavy;
         }
         return vracenyText;
     }
@@ -274,8 +276,9 @@ public class Prostor {
      * @param postava
      * @return true - postava přidáná, false - opačně
      */
-    public boolean vlozPostavu (Postava neco) {
-        return postavy.add(neco);
+    public void vlozPostavu (Postava neco) {
+        //return postavy.add(neco);
+    	seznamPostav.put(neco.getJmeno(),neco);
     }
     
     /**
@@ -304,9 +307,11 @@ public class Prostor {
      */
     public Postava najdiPostavu(String jmenoPostavy) {
         Postava hledana = null;
-        for (Postava postava : postavy) {
-            if (postava.getJmeno().equals(jmenoPostavy)) {
-                hledana = postava;
+        for (String nazevPostavy : seznamPostav.keySet()) {
+            /*if (postava.getJmeno().equals(jmenoPostavy)) {
+                hledana = postava;*/
+        	if (nazevPostavy.equals(jmenoPostavy)) {
+                hledana = seznamPostav.get(nazevPostavy);
                 break;
             }
         }
@@ -329,12 +334,16 @@ public class Prostor {
      * @param postava
      * @return true - postava smazana z prostoru, false - postava nesmazana
      */
-    public boolean odeberPostavu(Postava odebirana) {
+    /*public boolean odeberPostavu(Postava odebirana) {
         return postavy.remove(odebirana);
-    }
+    }*/
 
 	public Collection<Vec> getVeci() {
 		return Collections.unmodifiableCollection(seznamVeci.values());
+	}
+	
+	public Collection<Postava> getPostavy() {
+		return Collections.unmodifiableCollection(seznamPostav.values());
 	}
 	
     @Override

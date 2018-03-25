@@ -120,4 +120,10 @@ public class Postava
         return jeVidet;
     }
     
+    @Override
+    public String toString() {
+    	return getJmeno();
+    
+    }
+    
 }

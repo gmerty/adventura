@@ -131,4 +131,6 @@ public class Batoh
         return seznamVeciVBatohu.containsKey(nazev);
     }
     
+    
+    
 }

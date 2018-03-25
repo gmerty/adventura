@@ -54,7 +54,7 @@ public class PrikazOdpoved implements IPrikaz
         if (odpoved.equals("ano") && plan.getCekaNaOdpoved() && plan.getPostavaNoks()) {
             plan.setCekaNaOdpoved(false);
             viteznyProstor.vlozPostavu(viteznaPostava);
-            aktualniProstor.odeberPostavu(viteznaPostava);
+            //aktualniProstor.odeberPostavu(viteznaPostava);
             viteznaPostava.setAktProstor(plan.getViteznyProstor());
             plan.setPostavaNoks(false);
             panChurchill.setJeVidet(true);

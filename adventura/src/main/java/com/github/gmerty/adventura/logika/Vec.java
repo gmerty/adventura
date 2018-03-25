@@ -63,5 +63,10 @@ public class Vec
         prenositelnost = in;
     }
     
+    @Override
+    public String toString() {
+    	return getNazev();
+    
+    }
     
 }
