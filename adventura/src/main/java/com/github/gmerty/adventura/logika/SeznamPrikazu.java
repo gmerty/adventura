@@ -15,7 +15,7 @@ import java.util.Map;
  *@author     Iuliia Loseeva
  *@version    20.12.2017
  */
-class SeznamPrikazu {
+public class SeznamPrikazu {
     // mapa pro uložení přípustných příkazů
     private  Map<String,IPrikaz> mapaSPrikazy;
        

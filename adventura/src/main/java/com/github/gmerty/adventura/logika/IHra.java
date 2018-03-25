@@ -17,7 +17,9 @@ public interface IHra
     //== VEŘEJNÉ KONSTANTY =====================================================
     
     
-    //== DEKLAROVANÉ METODY ====================================================
+    boolean konecHry = false;
+
+	//== DEKLAROVANÉ METODY ====================================================
     /**
      *  Vrátí úvodní zprávu pro hráče.
      *  
@@ -57,6 +59,8 @@ public interface IHra
      *  @return     odkaz na herní plán
      */
      public HerniPlan getHerniPlan();
+     
+	
     
     //== ZDĚDĚNÉ METODY ========================================================
     //== INTERNÍ DATOVÉ TYPY ===================================================
