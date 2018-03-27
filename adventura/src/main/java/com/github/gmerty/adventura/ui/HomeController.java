@@ -8,7 +8,7 @@ import com.github.gmerty.adventura.logika.Hra;
 import com.github.gmerty.adventura.logika.IHra;
 import com.github.gmerty.adventura.logika.Postava;
 import com.github.gmerty.adventura.logika.Prostor;
-import com.github.gmerty.adventura.logika.SeznamPrikazu;
+//import com.github.gmerty.adventura.logika.SeznamPrikazu;
 import com.github.gmerty.adventura.logika.Vec;
 
 import javafx.beans.value.ChangeListener;
@@ -28,7 +28,6 @@ import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-//import javafx.scene.web.HTMLEditor;
 import javafx.scene.image.ImageView;
 
 
@@ -41,9 +40,14 @@ public class HomeController extends GridPane implements Observer{
 	@FXML private ListView<Postava> seznamPostavVMistnosti;
 	@FXML private ImageView uzivatel;
 	//@FXML private ImageView seznamVeciVBatohu;
-	@FXML private ListView<Vec> seznamVeciVBatohu;
+	//@FXML private ListView<Vec> seznamVeciVBatohu;
 	@FXML private WebView napoveda;
 	final Label label = new Label();
+	@FXML private ImageView iSerborne;
+	@FXML private ImageView iKembridge;
+	@FXML private ImageView iPrinceton;
+	@FXML private ImageView iClanek;
+	@FXML private ImageView iEnigma;
 	
 	
 	private IHra hra;
@@ -54,24 +58,35 @@ public class HomeController extends GridPane implements Observer{
 	 */
 	//@SuppressWarnings("deprecation")
 	@FXML public void odesliPrikaz() {
-		//System.out.println(vstupniText.getText());
 		odesliPrikaz(vstupniText.getText());
 		
 		
 	}
 	
 	 public void odesliPrikaz(String parametr) {
-			//System.out.println(vstupniText.getText());
 			String vystupPrikazu = hra.zpracujPrikaz(parametr);
 			vystup.appendText("\n------\n"+parametr+"\n--------\n");
 			vystup.appendText(vystupPrikazu);
 			vstupniText.setText("");
+			if (hra.getHerniPlan().getBatoh().najdiVBatohu("SS_Diploma")) {
+				iSerborne.setVisible(true);
+			} 
+			if (hra.getHerniPlan().getBatoh().najdiVBatohu("Diplom_bakalare")) {
+				iKembridge.setVisible(true);
+			}
+			if (hra.getHerniPlan().getBatoh().najdiVBatohu("Diplom_doktora")) {
+				iPrinceton.setVisible(true);
+			}
+			if (hra.getHerniPlan().getBatoh().najdiVBatohu("The_Entscheidungsproblem")) {
+				iClanek.setVisible(true);
+			}
+			if (hra.getHerniPlan().getBatoh().najdiVBatohu("informace_od_polaku")) {
+				iEnigma.setVisible(true);
+			}				
 			if (hra.konecHry()) {
 				vystup.appendText("\n------\nKonec hry\n------\n");
-				vstupniText.setDisable(true);
-				
-			}
-			
+				vstupniText.setDisable(true);				
+			}			
 		}
 	
 	
@@ -89,56 +104,24 @@ public class HomeController extends GridPane implements Observer{
 		hra.zpracujPrikaz("konec");
 		vystup.appendText("\n------\nKonec hry\n------\n");
 		vstupniText.setDisable(true);
-		//seznamVeciVBatohu.setVisible(true);
 	}
 	
 	@FXML public void pPrikazNapoveda() throws Exception{
-		//SeznamPrikazu platnePrikazy = null;
-		//hra.zpracujPrikaz("nápověda");
-		//hra.prikazNapoveda();
-		/*vystup.appendText("\n------\nVáším úkolem je projit spolu s Alanem Turingem od Serbornu do Bletchley Parku\n"
-		        + "a připravit všechno pro prolom šifru Enigmy.\n"
-		        + "\n"
-		//        + "Můžeš zadat tyto příkazy:\n"
-		//        + platnePrikazy.vratNazvyPrikazu()
-						);*/
-		/*FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("test.fxml"));
-        Parent root1 = (Parent) fxmlLoader.load();
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setTitle("Napoveda");
-        stage.setScene(new Scene(root1));  
-        stage.show();*/
-		/*try {
-                Parent oknoNapoveda = (Parent) new Parent();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(oknoNapoveda));  
-                stage.show();
-                WebEngine engine = napoveda.getEngine();
-        	    engine.load("http://www.google.com/");
-		} catch(Exception e) {
-           e.printStackTrace();
-        } */
 		try {
 		WebView napoveda = new WebView();
         Stage stage = new Stage();
         stage.setScene(new Scene(napoveda));  
         stage.show();
         WebEngine engine = napoveda.getEngine();
-	    engine.load("http://www.google.com/");
+	    engine.load("napoveda.HTML");
 		} catch(Exception e) {
 	           e.printStackTrace();
 	        }
-
-        
-		//napoveda.setVisible(true);
 	}
 	
 	@FXML public void pJdi() {
 		Prostor aktualniProstor = seznamVychodu.getSelectionModel().getSelectedItem();
-		odesliPrikaz("jdi "+aktualniProstor.getNazev());
-		
+		odesliPrikaz("jdi "+aktualniProstor.getNazev());		
 	}
 	
 	
@@ -155,25 +138,12 @@ public class HomeController extends GridPane implements Observer{
 		seznamVeciVMistnosti.getItems().addAll(hra.getHerniPlan().getAktualniProstor().getVeci());
 		seznamVychodu.getItems().addAll(hra.getHerniPlan().getAktualniProstor().getVychody());
 		seznamPostavVMistnosti.getItems().addAll(hra.getHerniPlan().getAktualniProstor().getPostavy());
-		seznamVeciVBatohu.getItems().addAll(hra.getHerniPlan().getBatoh().getVeciVBatohu());
-		//System.out.println("");
+		//seznamVeciVBatohu.getItems().addAll(hra.getHerniPlan().getBatoh().getVeciVBatohu());
 		uzivatel.setX(hra.getHerniPlan().getAktualniProstor().getX());
 		uzivatel.setY(hra.getHerniPlan().getAktualniProstor().getY());
 		hra.getHerniPlan().addObserver(this);
 		hra.getHerniPlan().getBatoh().addObserver(this);
-		/*seznamVychodu.getSelectionModel().selectedItemProperty().addListener(
-				new ChangeListener<String>() {
-					public void changed(ObservableValue<? extends String> ov,
-							String old_val, String new_val) {
-						label.setText(new_val);
-						//label.setTextFill(value);
-					}
-					
-				}
-				);*/
-		//WebView napo = new WebView();
-	    
-	    //oot.getChildren().add(view);
+		
 	}
 
 	@Override
@@ -181,14 +151,13 @@ public class HomeController extends GridPane implements Observer{
 		seznamVeciVMistnosti.getItems().clear();
 		seznamVychodu.getItems().clear();
 		seznamPostavVMistnosti.getItems().clear();
-		seznamVeciVBatohu.getItems().clear();
+		//seznamVeciVBatohu.getItems().clear();
 		seznamVeciVMistnosti.getItems().addAll(hra.getHerniPlan().getAktualniProstor().getVeci());
 		seznamVychodu.getItems().addAll(hra.getHerniPlan().getAktualniProstor().getVychody());
 		seznamPostavVMistnosti.getItems().addAll(hra.getHerniPlan().getAktualniProstor().getPostavy());
-		seznamVeciVBatohu.getItems().addAll(hra.getHerniPlan().getBatoh().getVeciVBatohu());
+		//seznamVeciVBatohu.getItems().addAll(hra.getHerniPlan().getBatoh().getVeciVBatohu());
 		uzivatel.setX(hra.getHerniPlan().getAktualniProstor().getX());
 		uzivatel.setY(hra.getHerniPlan().getAktualniProstor().getY());
-		//hra.
 	}
 
 }

@@ -13,7 +13,6 @@ import java.util.*;
 public class Batoh extends Observable
 {
     private int kapacita = 10;
-    //private Collection<Vec> seznamVeciVBatohu;
     private Map<String,Vec> seznamVeciVBatohu;
     
     //== Datové atributy (statické i instancí)======================================
@@ -44,7 +43,6 @@ public class Batoh extends Observable
             return true;
         }
         else return false;
-        //return false;
     }
     
     /**
@@ -55,13 +53,6 @@ public class Batoh extends Observable
      */
     public Vec odeberVec (String nazev) {
         Vec hledana = null;
-        /*for (Vec vec : seznamVeciVbatohu) {
-            if (vec.getNazev().equals(nazev)) {
-                hledana = vec;
-                seznamVeciVbatohu.remove(vec);
-                break;
-            }
-        }*/
         if (seznamVeciVBatohu.containsKey(nazev)) {
             hledana = seznamVeciVBatohu.get(nazev);
             seznamVeciVBatohu.remove(nazev);
@@ -72,27 +63,12 @@ public class Batoh extends Observable
     }
     
     /**
-     *  Metoda vrací seznam věci v batohu.
-     *  
-     *@return seznam věcí
-     */
-    /*public Collection<Vec> veciVBatohu() {
-        return seznamVeciVBatohu;
-    }*/
-    
-    /**
      *  Metoda počitá kolik volných míst zbyvá v batohu.
      *  
      *@return počet volných mist
      */
     public int volnychMist() {
-        //int vm = kapacita;
-        /*for (Vec vec : seznamVeciVBatohu) {
-            vm--;
-        }*/
-        
-        //return vm;
-    	return kapacita-seznamVeciVBatohu.size();
+        return kapacita-seznamVeciVBatohu.size();
     }
 
     /**
@@ -103,17 +79,12 @@ public class Batoh extends Observable
     @SuppressWarnings("rawtypes")
 	public String vBatohu () {
         String veci = "V batohu: ";
-        /*for (Vec vec : seznamVeciVbatohu) {
-            veci += vec.getNazev() + ", ";
-        }*/
-        
         Set set = seznamVeciVBatohu.entrySet();
         Iterator iterator = set.iterator();
         while (iterator.hasNext()) {
         	Map.Entry mentry = (Map.Entry)iterator.next();
         	veci += mentry.getValue() + ", ";
-        }
-        
+        }        
         return veci;
     }
     
@@ -124,17 +95,14 @@ public class Batoh extends Observable
      *@return true = vec je nalezená v batohu, false = vec nenalezená
      */
     public boolean najdiVBatohu (String nazev) {
-        //boolean hledana = false;
-        /*for (Vec vec : seznamVeciVbatohu) {
-            if (vec.getNazev().equals(nazev)) {
-                hledana = true;
-                break;
-            }
-        }
-        return hledana;*/
         return seznamVeciVBatohu.containsKey(nazev);
     }
     
+    /**
+     *  Metoda vrací seznam věci v batohu.
+     *  
+     *@return seznam věcí v batohu
+     */
     public Collection<Vec> getVeciVBatohu() {
 		return Collections.unmodifiableCollection(seznamVeciVBatohu.values());
 	}

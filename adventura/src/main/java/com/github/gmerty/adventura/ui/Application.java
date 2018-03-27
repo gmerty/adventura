@@ -35,11 +35,9 @@ public class Application extends javafx.application.Application {
 	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-//		Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
-		
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass()
-		          .getResource("Scene2.fxml"));
+		          .getResource("Scene3.fxml"));
 		Parent root = loader.load();
 
 		HomeController controller = loader.getController();
