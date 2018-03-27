@@ -132,6 +132,8 @@ public class HerniPlan extends Observable{
      */
      public void setCekaNaOdpoved(boolean in) {
         cekaNaOdpoved = in;
+        setChanged();
+        notifyObservers();
     }
     
     /**
@@ -244,18 +246,24 @@ public class HerniPlan extends Observable{
         
         if (prostor.getNazev().equals("Serborne")) {
             setCekaNaOdpoved(true);
+            setChanged();
+            notifyObservers();
             ret = " o kolik procent se zvětší objem válce, jestliže jeho poloměr se zvětší o 10 % a jeho výška o 20 %?"
             +"\nPro odpoved použijte příkaz odpovedZkouska."
             +"\nPak napiště vaší odpoveď ve formě čísla s procentou a čarkoj jako desetinným oddělovačem, misto mezery použivejte podtržitko.";
         }        
         else if (prostor.getNazev().equals("Kembridge")) {
             setCekaNaOdpoved(true);
+            setChanged();
+            notifyObservers();
             ret = " jaká je tato formula: !(A∧B) <=> !A ∨ !B ?"
             +"\nPro odpoved použijte příkaz odpovedZkouska."
             +"\nPak napiště vaší odpoveď bez diakrityky.";
         }        
         else if (prostor.getNazev().equals("Princeton")) {
             setCekaNaOdpoved(true);
+            setChanged();
+            notifyObservers();
             ret = " dešifrujte větu: Dodqh, mvl mhgqlfnd!"
             +"\nPro odpoved použijte příkaz odpovedZkouska."
             +"\nPak napiště vaší odpoveď v cestine bez diakritiky, místo mezery použivejte podtržitko.";

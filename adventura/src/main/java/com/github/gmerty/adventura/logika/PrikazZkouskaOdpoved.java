@@ -2,7 +2,10 @@
  * Kontrola kódování: Příliš žluťoučký kůň úpěl ďábelské ódy. */
 package com.github.gmerty.adventura.logika;
 
+import java.util.Observable;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
 
 /*******************************************************************************
  * Třída PrikazZkouskaOdpoved implementuje pro hru příkaz odpovědi na zkouškovou otázky.
@@ -10,12 +13,14 @@ package com.github.gmerty.adventura.logika;
  * @author    Iuliia Loseeva
  * @version   30.12.2017
  */
-public class PrikazZkouskaOdpoved implements IPrikaz
+public class PrikazZkouskaOdpoved extends Observable implements IPrikaz
 {
     //== Datové atributy (statické i instancí)======================================
 
     private static final String NAZEV = "odpovedZkouska";
     private HerniPlan plan;
+    @FXML private ListView<Vec> seznamVeciVBatohu;
+    //private IHra hra;
     
     /**
     *  Konstruktor třídy
@@ -25,6 +30,7 @@ public class PrikazZkouskaOdpoved implements IPrikaz
     public PrikazZkouskaOdpoved(HerniPlan plan)
     {
         this.plan = plan;
+        //this.hra=hra;
     }
 
     //== Nesoukromé metody (instancí i třídy) ======================================
@@ -40,6 +46,7 @@ public class PrikazZkouskaOdpoved implements IPrikaz
     @Override
     public String provedPrikaz(String... parametry) {
         String ret="";
+        //HerniPlan plan;
         if (parametry.length == 0) {
             ret = "Tady očekaváná odpoveď.";
         }
@@ -48,6 +55,8 @@ public class PrikazZkouskaOdpoved implements IPrikaz
         Prostor aktualniProstor = plan.getAktualniProstor();
         Batoh batoh = plan.getBatoh();
         Prostor sousedniProstor;
+        setChanged();
+        notifyObservers();
         
         if (aktualniProstor.getNazev().equals("Serborne") && odpoved.equals("o_45,2_%") && plan.getCekaNaOdpoved()) {
             sousedniProstor = plan.getAktualniProstor().vratSousedniProstor("Kembridge");
@@ -56,6 +65,10 @@ public class PrikazZkouskaOdpoved implements IPrikaz
             diploma.setPrenositelnost(true);
             batoh.pridejVec(diploma);
             sousedniProstor.zamknout(false);
+            setChanged();
+            notifyObservers();
+            //seznamVeciVBatohu.getItems().clear();
+            //seznamVeciVBatohu.getItems().addAll(plan.getBatoh().getVeciVBatohu());
             ret = "Odpověděl(a) jste správně, teď dostanete potvrzení o ukončeném SŠ vzdělání";
         }        
         else if (aktualniProstor.getNazev().equals("Kembridge") && odpoved.equals("tautologie") && plan.getCekaNaOdpoved()) {
@@ -65,6 +78,8 @@ public class PrikazZkouskaOdpoved implements IPrikaz
             diploma.setPrenositelnost(true);
             batoh.pridejVec(diploma);
             sousedniProstor.zamknout(false);
+            setChanged();
+            notifyObservers();
             ret = "Odpověděl(a) jste správně, teď dostanete potvrzení o ukončeném VŠ vzdělání";
         }        
         else if (aktualniProstor.getNazev().equals("Princeton") && odpoved.equals("Alane,_jsi_jednicka!") && plan.getCekaNaOdpoved()) {
@@ -74,13 +89,19 @@ public class PrikazZkouskaOdpoved implements IPrikaz
             diploma.setPrenositelnost(true);
             batoh.pridejVec(diploma);
             sousedniProstor.zamknout(false);
+            setChanged();
+            notifyObservers();
             ret = "Odpověděl(a) jste správně, teď mužete jit do Bletčley parku.";
         }
         else if (!plan.getCekaNaOdpoved()) {
+        	setChanged();
+            notifyObservers();
             ret = "Nemáte na co odpovědět."; 
         }
         else {
             plan.novyPokus();
+            setChanged();
+            notifyObservers();
             ret = "Odpověď není správná, skontrolujte své řešení." 
             +"\nOdpoveď napiště bez diakrityky, čarka je desetinný oddělovač, místo mezery použivejte podtržitko.";
         }

@@ -328,9 +328,10 @@ public class Prostor {
      * @param věc
      * @return true - vec smazana z prostoru, false - vec nesmazana
      */
-    /*public boolean odeberVec(Vec odebirana) {
-        return veci.remove(odebirana);
-    }*/
+    public boolean odeberVec(Vec odebirana) {
+        seznamVeci.remove(odebirana);
+        return true;
+    }
     
     /**
      * Metoda odebirá postavu z prostoru

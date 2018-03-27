@@ -1,5 +1,7 @@
 package com.github.gmerty.adventura.logika;
 
+import java.util.Observable;
+
 /**
  *  Třída implementující toto rozhraní bude ve hře zpracovávat jeden konkrétní příkaz.
  *  Toto rozhraní je součástí jednoduché textové hry.

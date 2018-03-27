@@ -2,7 +2,7 @@
  * Kontrola kódování: Příliš žluťoučký kůň úpěl ďábelské ódy. */
 package com.github.gmerty.adventura.logika;
 
-
+import java.util.Observable;
 
 /*******************************************************************************
  * Instance třídy PrikazBatoh představují ...
@@ -10,7 +10,7 @@ package com.github.gmerty.adventura.logika;
  * @author    Iuliia Loseeva
  * @version   21.12.2017
  */
-public class PrikazBatoh implements IPrikaz
+public class PrikazBatoh extends Observable implements IPrikaz
 {
     //== Datové atributy (statické i instancí)======================================
     
@@ -39,6 +39,8 @@ public class PrikazBatoh implements IPrikaz
     public String provedPrikaz(String... parametry) {
         if (parametry.length == 0) {
             Batoh batoh = plan.getBatoh();
+            setChanged();
+            notifyObservers();
             return batoh.vBatohu();
             
         }

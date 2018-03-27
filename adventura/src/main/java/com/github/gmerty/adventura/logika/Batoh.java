@@ -10,7 +10,7 @@ import java.util.*;
  * @author    Iuliia Loseeva
  * @version   21.12.2017
  */
-public class Batoh
+public class Batoh extends Observable
 {
     private int kapacita = 10;
     //private Collection<Vec> seznamVeciVBatohu;
@@ -39,6 +39,8 @@ public class Batoh
     public boolean pridejVec (Vec vec) {
         if (this.volnychMist() > 0) {
             seznamVeciVBatohu.put(vec.getNazev(),vec);
+            setChanged();
+            notifyObservers();
             return true;
         }
         else return false;
@@ -63,6 +65,8 @@ public class Batoh
         if (seznamVeciVBatohu.containsKey(nazev)) {
             hledana = seznamVeciVBatohu.get(nazev);
             seznamVeciVBatohu.remove(nazev);
+            setChanged();
+            notifyObservers();
         } 
         return hledana;
     }
@@ -130,6 +134,10 @@ public class Batoh
         return hledana;*/
         return seznamVeciVBatohu.containsKey(nazev);
     }
+    
+    public Collection<Vec> getVeciVBatohu() {
+		return Collections.unmodifiableCollection(seznamVeciVBatohu.values());
+	}
     
     
     
