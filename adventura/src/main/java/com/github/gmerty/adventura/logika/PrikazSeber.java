@@ -55,7 +55,7 @@ public class PrikazSeber implements IPrikaz
         if (sbirana != null) {
             if (sbirana.jePrenositelna()) {
                 if (batoh.pridejVec(sbirana)) {
-                    //aktualniProstor.odeberVec(sbirana);
+                    aktualniProstor.odeberVec(nazevVeci);
                     return "Sebral si vec " + nazevVeci;
                 }
                 else {

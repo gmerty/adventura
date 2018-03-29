@@ -38,6 +38,7 @@ public class Batoh extends Observable
     public boolean pridejVec (Vec vec) {
         if (this.volnychMist() > 0) {
             seznamVeciVBatohu.put(vec.getNazev(),vec);
+            
             setChanged();
             notifyObservers();
             return true;

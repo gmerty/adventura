@@ -2,7 +2,7 @@
  * Kontrola kódování: Příliš žluťoučký kůň úpěl ďábelské ódy. */
 package com.github.gmerty.adventura.logika;
 
-
+import java.util.Observable;
 
 /*******************************************************************************
  * Instance třídy PrikazOdpoved implementuje pro hru příkaz odpovědi na otázky od postavy.
@@ -10,7 +10,7 @@ package com.github.gmerty.adventura.logika;
  * @author    Iuliia Loseeva
  * @version   30.12.2017
  */
-public class PrikazOdpoved implements IPrikaz
+public class PrikazOdpoved extends Observable implements IPrikaz
 {
     //== Datové atributy (statické i instancí)======================================
 
@@ -54,10 +54,12 @@ public class PrikazOdpoved implements IPrikaz
         if (odpoved.equals("ano") && plan.getCekaNaOdpoved() && plan.getPostavaNoks()) {
             plan.setCekaNaOdpoved(false);
             viteznyProstor.vlozPostavu(viteznaPostava);
-            //aktualniProstor.odeberPostavu(viteznaPostava);
+            aktualniProstor.odeberPostavu("pan_Noks");
             viteznaPostava.setAktProstor(plan.getViteznyProstor());
             plan.setPostavaNoks(false);
             panChurchill.setJeVidet(true);
+            setChanged();
+            notifyObservers();
             //aktualniProstor.vlozVec()
             ret = "Pan Noks přejde do Bletchley Parku" + "\n" + aktualniProstor.dlouhyPopis();
         }        
@@ -70,8 +72,10 @@ public class PrikazOdpoved implements IPrikaz
             vec.setPrenositelnost(true);
             batoh.pridejVec(vec);
             //panChurchill.setJeVidet(true);
-            //aktualniProstor.vlozVec()
-            ret = "Pan Noks přejde do Bletchley Parku" + "\n" + aktualniProstor.dlouhyPopis();
+            aktualniProstor.odeberVec("informace_od_polaku");
+            setChanged();
+            notifyObservers();
+            ret = "Pan Churchill dal Vám informace od polaku pro prolom Enigmy v Bletchley Parku" + "\n" + aktualniProstor.dlouhyPopis();
         }        
         else if (odpoved.equals("ano") && plan.getCekaNaOdpoved()) {
             plan.setCekaNaOdpoved(false);

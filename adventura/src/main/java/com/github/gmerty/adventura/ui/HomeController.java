@@ -69,20 +69,20 @@ public class HomeController extends GridPane implements Observer{
 			vystup.appendText(vystupPrikazu);
 			vstupniText.setText("");
 			if (hra.getHerniPlan().getBatoh().najdiVBatohu("SS_Diploma")) {
-				iSerborne.setVisible(true);
-			} 
+				iSerborne.setVisible(true); 
+			} else iSerborne.setVisible(false);
 			if (hra.getHerniPlan().getBatoh().najdiVBatohu("Diplom_bakalare")) {
 				iKembridge.setVisible(true);
-			}
+			} else iKembridge.setVisible(false);
 			if (hra.getHerniPlan().getBatoh().najdiVBatohu("Diplom_doktora")) {
 				iPrinceton.setVisible(true);
-			}
+			} else iPrinceton.setVisible(false);
 			if (hra.getHerniPlan().getBatoh().najdiVBatohu("The_Entscheidungsproblem")) {
 				iClanek.setVisible(true);
-			}
+			} else iClanek.setVisible(false);
 			if (hra.getHerniPlan().getBatoh().najdiVBatohu("informace_od_polaku")) {
 				iEnigma.setVisible(true);
-			}				
+			}	else iEnigma.setVisible(false);		
 			if (hra.konecHry()) {
 				vystup.appendText("\n------\nKonec hry\n------\n");
 				vstupniText.setDisable(true);				
@@ -124,6 +124,21 @@ public class HomeController extends GridPane implements Observer{
 		odesliPrikaz("jdi "+aktualniProstor.getNazev());		
 	}
 	
+	@FXML public void pMluv() {
+		Postava postava = seznamPostavVMistnosti.getSelectionModel().getSelectedItem();
+		odesliPrikaz("mluv "+postava.getJmeno());		
+	}
+	
+	@FXML public void pSeber() {
+		Vec vec = seznamVeciVMistnosti.getSelectionModel().getSelectedItem();
+		odesliPrikaz("seber "+vec.getNazev());		
+	}
+	
+	@FXML public void pVypis() {
+		Vec vec = seznamVeciVMistnosti.getSelectionModel().getSelectedItem();
+		vystup.appendText(vec.getNazev());
+		//odesliPrikaz("seber "+vec.getNazev());		
+	}
 	
 	
 	/**
@@ -143,6 +158,8 @@ public class HomeController extends GridPane implements Observer{
 		uzivatel.setY(hra.getHerniPlan().getAktualniProstor().getY());
 		hra.getHerniPlan().addObserver(this);
 		hra.getHerniPlan().getBatoh().addObserver(this);
+		hra.getHerniPlan().getAktualniProstor().addObserver(this);
+		//hra.getPlatnePrikazy().vratPrikaz("PrikazZkouskaOdpoved").addObserver(this);
 		
 	}
 

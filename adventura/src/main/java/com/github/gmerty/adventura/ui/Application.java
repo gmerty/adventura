@@ -20,7 +20,7 @@ public class Application extends javafx.application.Application {
 		if (args.length == 0) {
             launch(args);
         } else {
-            if (args[0].equals("-text")) {
+            if (args[0].equals("text")) {
                 IHra hra = new Hra();
                 TextoveRozhrani ui = new TextoveRozhrani(hra);
                 ui.hraj();

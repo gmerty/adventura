@@ -64,6 +64,7 @@ public class PrikazZkouskaOdpoved extends Observable implements IPrikaz
             Vec diploma = aktualniProstor.najdiVec("SS_Diploma");
             diploma.setPrenositelnost(true);
             batoh.pridejVec(diploma);
+            aktualniProstor.odeberVec("SS_Diploma");
             sousedniProstor.zamknout(false);
             setChanged();
             notifyObservers();
@@ -77,6 +78,7 @@ public class PrikazZkouskaOdpoved extends Observable implements IPrikaz
             Vec diploma = aktualniProstor.najdiVec("Diplom_bakalare");
             diploma.setPrenositelnost(true);
             batoh.pridejVec(diploma);
+            aktualniProstor.odeberVec("Diplom_bakalare");
             sousedniProstor.zamknout(false);
             setChanged();
             notifyObservers();
@@ -88,6 +90,7 @@ public class PrikazZkouskaOdpoved extends Observable implements IPrikaz
             Vec diploma = aktualniProstor.najdiVec("Diplom_doktora");
             diploma.setPrenositelnost(true);
             batoh.pridejVec(diploma);
+            aktualniProstor.odeberVec("Diplom_doktora");
             sousedniProstor.zamknout(false);
             setChanged();
             notifyObservers();

@@ -60,7 +60,7 @@ public interface IHra
      */
      public HerniPlan getHerniPlan();
      
-	
+     public SeznamPrikazu getPlatnePrikazy();
     
     //== ZDĚDĚNÉ METODY ========================================================
     //== INTERNÍ DATOVÉ TYPY ===================================================

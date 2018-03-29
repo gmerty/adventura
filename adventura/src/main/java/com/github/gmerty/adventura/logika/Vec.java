@@ -3,9 +3,7 @@
  */
 package com.github.gmerty.adventura.logika;
 
-
-
-
+import java.util.Observable;
 
 /*******************************************************************************
  * Instances of class {@code Vec} represent ...
@@ -13,7 +11,7 @@ package com.github.gmerty.adventura.logika;
  * @author  Iuliia Loseeva
  * @version 20.12.2017
  */
-public class Vec
+public class Vec extends Observable
 {
     //== CONSTANT CLASS ATTRIBUTES =============================================
     //== VARIABLE CLASS ATTRIBUTES =============================================

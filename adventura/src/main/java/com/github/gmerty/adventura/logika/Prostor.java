@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Observable;
 import java.util.stream.Collectors;
 
 /**
@@ -21,7 +22,7 @@ import java.util.stream.Collectors;
  * @author Iuliia Loseeva
  * @version 20.12.2017
  */
-public class Prostor {
+public class Prostor extends Observable{
 
     private String nazev;
     private String popis;
@@ -328,7 +329,7 @@ public class Prostor {
      * @param věc
      * @return true - vec smazana z prostoru, false - vec nesmazana
      */
-    public boolean odeberVec(Vec odebirana) {
+    public boolean odeberVec(String odebirana) {
         seznamVeci.remove(odebirana);
         return true;
     }
@@ -339,9 +340,10 @@ public class Prostor {
      * @param postava
      * @return true - postava smazana z prostoru, false - postava nesmazana
      */
-    /*public boolean odeberPostavu(Postava odebirana) {
-        return postavy.remove(odebirana);
-    }*/
+    public boolean odeberPostavu(String odebirana) {
+        seznamPostav.remove(odebirana);
+        return true;
+    }
 
 	public Collection<Vec> getVeci() {
 		return Collections.unmodifiableCollection(seznamVeci.values());

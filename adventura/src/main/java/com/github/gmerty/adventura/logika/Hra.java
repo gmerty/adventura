@@ -114,6 +114,10 @@ public class Hra implements IHra {
      public HerniPlan getHerniPlan(){
         return herniPlan;
      }
+     
+     public SeznamPrikazu getPlatnePrikazy() {
+    	 return platnePrikazy;
+     }
     
 }
 

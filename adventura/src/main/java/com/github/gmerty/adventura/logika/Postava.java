@@ -2,7 +2,7 @@
  * Kontrola kódování: Příliš žluťoučký kůň úpěl ďábelské ódy. */
 package com.github.gmerty.adventura.logika;
 
-
+import java.util.Observable;
 
 /*******************************************************************************
  * Třída Postava - popisuje jednotlivé postavy hry
@@ -12,7 +12,7 @@ package com.github.gmerty.adventura.logika;
  * @author  Iuliia Loseeva
  * @version 20.12.2017
  */
-public class Postava
+public class Postava extends Observable
 {
     //== CONSTANT CLASS ATTRIBUTES =============================================
     //== VARIABLE CLASS ATTRIBUTES =============================================
