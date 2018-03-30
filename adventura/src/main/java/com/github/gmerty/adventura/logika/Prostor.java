@@ -345,32 +345,68 @@ public class Prostor extends Observable{
         return true;
     }
 
+    /**
+     *  Vrací seznam vecí v mistnosti
+     *  
+     *  @return seznam vecí v mistnosti
+     */ 
 	public Collection<Vec> getVeci() {
 		return Collections.unmodifiableCollection(seznamVeci.values());
 	}
 	
+	/**
+     *  Vrací seznam postav v mistnosti
+     *  
+     *  @return seznam postav v mistnosti
+     */
 	public Collection<Postava> getPostavy() {
 		return Collections.unmodifiableCollection(seznamPostav.values());
 	}
 	
+	/**
+     *  Vrací řadek z nazvu prostoru
+     *  
+     *  @return nazev prostoru
+     */
     @Override
     public String toString() {
     	return getNazev();
     
     }
     
+    
+    /**
+     *  Vrací kooordinatu X
+     *  
+     *  @return kooordinatu X
+     */
     public double getX() {
     	return x;
     }
-    	
+    
+    /**
+     *  Nastavuje kooordinatu X
+     *  
+     *  @param kooordinata X
+     */
     public void setX(double x) {
     	this.x = x;
     }
-    	
+    
+    /**
+     *  Vrací kooordinatu Y
+     *  
+     *  @return kooordinatu Y
+     */
     public double getY() {
     	return y;
     }
-    	
+    
+    /**
+     *  Nastavuje kooordinatu Y
+     *  
+     *  @param kooordinata Y
+     */
     public void setY(double y) {
     	this.y = y;
     }

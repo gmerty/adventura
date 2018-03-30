@@ -61,6 +61,11 @@ public class Vec extends Observable
         prenositelnost = in;
     }
     
+    /**
+     *  Vrací nazev
+     *  
+     *  @return nazev
+     */
     @Override
     public String toString() {
     	return getNazev();

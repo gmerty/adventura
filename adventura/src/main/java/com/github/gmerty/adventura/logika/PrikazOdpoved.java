@@ -93,6 +93,11 @@ public class PrikazOdpoved extends Observable implements IPrikaz
         return ret;
     }
 
+    /**
+     *  Vrací název přikazu
+     *  
+     *  @return nazev příkazu 
+     */ 
     @Override
     public String getNazev() {
         return NAZEV;

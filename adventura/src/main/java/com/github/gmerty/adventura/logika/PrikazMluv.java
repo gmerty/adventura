@@ -79,6 +79,11 @@ public class PrikazMluv implements IPrikaz
         return ret;
     }
 
+    /**
+     *  Metoda vrací nazev příkazu
+     *  
+     *@return nazev příkazu
+     */
     @Override
     public String getNazev() {
         return NAZEV;

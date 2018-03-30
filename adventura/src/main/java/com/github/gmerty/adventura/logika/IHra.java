@@ -60,6 +60,11 @@ public interface IHra
      */
      public HerniPlan getHerniPlan();
      
+     /**
+      *  Metoda vrátí odkaz na seznam platných příkazů, je využita v observere.
+      *  
+      *  @return     odkaz na seznam platných příkazů
+      */
      public SeznamPrikazu getPlatnePrikazy();
     
     //== ZDĚDĚNÉ METODY ========================================================

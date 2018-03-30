@@ -120,6 +120,11 @@ public class Postava extends Observable
         return jeVidet;
     }
     
+    /**
+     * Мкфс9 jmeno postavy ve formatu řadku
+     *
+     * @return jmeno postavy
+     */
     @Override
     public String toString() {
     	return getJmeno();

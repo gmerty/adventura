@@ -112,6 +112,11 @@ public class PrikazZkouskaOdpoved extends Observable implements IPrikaz
         return ret + "\n"+aktualniProstor.dlouhyPopis();
     }
 
+    /**
+     *  Vrací název příkazu
+     *  
+     *  @return  název příkazu
+     */ 
     @Override
     public String getNazev() {
         return NAZEV;

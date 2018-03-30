@@ -115,6 +115,11 @@ public class Hra implements IHra {
         return herniPlan;
      }
      
+     /**
+      *  Metoda vrátí odkaz na seznam plátných příkazů, použita pro obzerver.
+      *  
+      *  @return     odkaz na seznam plátných příkazů
+      */
      public SeznamPrikazu getPlatnePrikazy() {
     	 return platnePrikazy;
      }

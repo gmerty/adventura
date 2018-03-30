@@ -63,6 +63,11 @@ public class HomeController extends GridPane implements Observer{
 		
 	}
 	
+	/**
+	 * metoda posilá příkaz na zpracování
+	 * 
+	 * @param parametr pžíkazu
+	 */
 	 public void odesliPrikaz(String parametr) {
 			String vystupPrikazu = hra.zpracujPrikaz(parametr);
 			vystup.appendText("\n------\n"+parametr+"\n--------\n");
@@ -89,7 +94,9 @@ public class HomeController extends GridPane implements Observer{
 			}			
 		}
 	
-	
+	 /**
+		 * metoda zpracovava reakce na tlačitko NovHra v menu
+		 */
 	@FXML public void pPrikazNovaHra() {
 		vstupniText.setDisable(false);
 		IHra hra = new Hra();
@@ -100,12 +107,18 @@ public class HomeController extends GridPane implements Observer{
 		
 	}
 	
+	/**
+	 * metoda zpracovava reakce na tlačitko Konec v menu
+	 */
 	@FXML public void pPrikazKonec() {
 		hra.zpracujPrikaz("konec");
 		vystup.appendText("\n------\nKonec hry\n------\n");
 		vstupniText.setDisable(true);
 	}
 	
+	/**
+	 * metoda zpracovava reakce na tlačitko Nápověda v menu
+	 */
 	@FXML public void pPrikazNapoveda() throws Exception{
 		try {
 		WebView napoveda = new WebView();
@@ -119,21 +132,33 @@ public class HomeController extends GridPane implements Observer{
 	        }
 	}
 	
+	/**
+	 * metoda zpracovava reakce na tlačitko Jdi v seznamu východů
+	 */
 	@FXML public void pJdi() {
 		Prostor aktualniProstor = seznamVychodu.getSelectionModel().getSelectedItem();
 		odesliPrikaz("jdi "+aktualniProstor.getNazev());		
 	}
 	
+	/**
+	 * metoda zpracovava reakce na tlačitko Mluv v seznamu osob v prostoru
+	 */
 	@FXML public void pMluv() {
 		Postava postava = seznamPostavVMistnosti.getSelectionModel().getSelectedItem();
 		odesliPrikaz("mluv "+postava.getJmeno());		
 	}
 	
+	/**
+	 * metoda zpracovava reakce na tlačitko Seber v seznamu věci v prostoru
+	 */
 	@FXML public void pSeber() {
 		Vec vec = seznamVeciVMistnosti.getSelectionModel().getSelectedItem();
 		odesliPrikaz("seber "+vec.getNazev());		
 	}
 	
+	/**
+	 * metoda zpracovava reakce na tlačitko CoToJe v seznamu věcí v istnosti
+	 */
 	@FXML public void pVypis() {
 		Vec vec = seznamVeciVMistnosti.getSelectionModel().getSelectedItem();
 		vystup.appendText(vec.getNazev());
@@ -163,6 +188,10 @@ public class HomeController extends GridPane implements Observer{
 		
 	}
 
+	/**
+	 * metoda aktualizuje GUI přes observer
+	 * @param argumenty
+	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		seznamVeciVMistnosti.getItems().clear();
